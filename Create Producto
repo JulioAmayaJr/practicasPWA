@@ -1,0 +1,115 @@
+@model Tarea_Práctica_2_.Models.ViewModels.VMProducto;
+
+@{
+    var titulo = "Crear producto";
+}
+
+<form method="post" enctype="multipart/form-data" asp-action="Create">
+
+    <div class="border p-3">
+        <div class="form-group row">
+            <h2 class="text-info pl-3">@titulo</h2>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="MProducto.nombre"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="MProducto.nombre" class="form-control" />
+                        <span asp-validation-for="MProducto.nombre" class="text-danger"></span>
+                    </div>
+                </div><br />
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="MProducto.descripcionCorta"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="MProducto.descripcionCorta" class="form-control" />
+                        <span asp-validation-for="MProducto.descripcionCorta" class="text-danger"></span>
+                    </div>
+                </div><br />
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="MProducto.descripcíon"></label>
+                    </div>
+                    <div class="col-8">
+                        <textarea asp-for="MProducto.descripcíon" class="form-control summernote"></textarea>
+                        <span asp-validation-for="MProducto.descripcíon" class="text-danger"></span>
+                    </div>
+                </div><br />
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="MProducto.precio"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="MProducto.precio" class="form-control" />
+                        <span asp-validation-for="MProducto.precio" class="text-danger"></span>
+                    </div>
+                </div><br />
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="MProducto.imagen"></label>
+                    </div>
+                    <div class="col-8">
+                        <input type="file" name="files" id="uploadbox" class="form-control" />
+                    </div>
+                </div><br />
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="MProducto.idCategoria"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="MProducto.idCategoria" asp-items="@Model.CategoriasSelectList" class="form-control">
+                            <option disabled selected>--Seleccionar Categoria--</option>
+                        </select>
+                        <span asp-validation-for="MProducto.idCategoria" class="text-danger"></span>
+                    </div>
+                </div><br />
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="MProducto.idConsola"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="MProducto.idConsola" asp-items="@Model.ConsolasSelectList" class="form-control">
+                            <option disabled selected>--Seleccionar Consola--</option>
+                        </select>
+                        <span asp-validation-for="MProducto.idConsola" class="text-danger"></span>
+                    </div>
+                </div><br />
+                <div class="form group row">
+                    <div class="col-8 offset-4 row">
+                        <div class="col">
+
+                            <input type="submit" onclick="validateInput()" class="btn btn-primary w-100" value="Crear" />
+
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-danger w-100"><i class="fas fa-reply"></i>&nbsp;Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+        function validateInput() {
+            if (document.getElementById("uploadbox").value == "") {
+                Swal.fire(
+                    'Error',
+                    'Subir imagen',
+                    'error'
+                )
+            }
+        }
+    </script>
+
+
+}
