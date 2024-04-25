@@ -1,0 +1,25 @@
+@model Tarea_Práctica_2_.Models.ViewModels.VMHome;
+<div class="container">
+    <div class="text-center">
+        <button class="btn btn-success filter-button" data-filter="all">Todas las consolas</button>
+        @foreach (var obj in Model.Consolas)
+        {
+                <button class="btn btn-outline-primary filter-button" data-filter="@obj.nombre.Replace(' ', '_')">@obj.nombre</button>
+        }
+    </div>
+    <br />
+    <div class="text-center">
+        <button class="btn btn-success filter-button2" data-filter="all2">Todas las categorias</button>
+        @foreach (var obj in Model.Categorias)
+        {
+                <button class="btn btn-outline-primary filter-button2" data-filter="@obj.nombre.Replace(' ', '_')">@obj.nombre</button>
+        }
+    </div>
+    <br />
+    <div class="row">
+        @foreach (var product in Model.Productos)
+        {
+                    <partial name="cardProductos" model="product"/>
+        }
+    </div>
+</div>
